@@ -23,6 +23,7 @@ Apache Spark 2.1.0
 ### 1. 啟動SparkStreaming程式
 ------
 執行SaprkStreaming程式
+
 		./${SPARK_HOME}/bin/spark-submit --jars ${SPARK_HOME}/lib/spark-streaming-flume-assembly_2.11-2.1.0.jar \
 		flume_wc_2_hdfs.py 2>error.log
 
@@ -31,12 +32,14 @@ Apache Spark 2.1.0
 ### 2. 啟動Flume Agent
 ------
 啟動Flume agent，將其log輸出至console
+
 		flume-ng agent -c /etc/flume-ng/conf -f flume_wc.conf -n agent1 \
 		-Dflume.root.logger=INFO.console
 
 ### 3. 將資料傳送至Agent Source
 ------
 將weblog所在資料透過設定之ip&port轉成avro格式並送入agent-source中。
+
 		python weblogs.py
 
 ### 4. 檢查Agent運作情形
@@ -50,4 +53,5 @@ Apache Spark 2.1.0
 ### 6. 檢查HDFS有無資料
 ------
 至HDFS檢查輸出路徑有無資料
+
 		hadoop fs -cat /tmp/flume/日期/*
